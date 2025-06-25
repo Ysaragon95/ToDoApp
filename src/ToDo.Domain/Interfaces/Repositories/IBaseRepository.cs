@@ -11,5 +11,6 @@ namespace ToDo.Domain.Interfaces.Repositories
         Task AddAsync(T entity);
         void Update(T entity);
         void Delete(T entity);
+        Task<IEnumerable<T>> GetAllByAsync(Expression<Func<T, bool>> predicate, bool includeOnlyActive = true);
     }
 }

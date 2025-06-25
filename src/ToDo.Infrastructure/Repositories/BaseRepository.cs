@@ -21,6 +21,18 @@ namespace ToDo.Infrastructure.Repositories
             return await _dbSet.ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllByAsync(Expression<Func<T, bool>> predicate, bool includeOnlyActive = true)
+        {
+            var query = _dbSet.Where(predicate);
+
+            if (includeOnlyActive)
+            {
+                query = query.Where(entity => EF.Property<bool>(entity, "StatusRegister") == true);
+            }
+
+            return await query.ToListAsync();
+        }
+
         public async Task<IEnumerable<T>> GetByIdsAsync(IEnumerable<int> ids, bool includeOnlyActive = true)
         {
             IQueryable<T> query = _dbSet.Where(entity => ids.Contains(EF.Property<int>(entity, "Id")));

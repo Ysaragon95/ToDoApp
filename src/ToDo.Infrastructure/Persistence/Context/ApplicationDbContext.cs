@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ToDo.Domain.Entities.Business;
 using ToDo.Domain.Entities.Security;
 
 namespace ToDo.Infrastructure.Persistence.Context
@@ -7,6 +8,7 @@ namespace ToDo.Infrastructure.Persistence.Context
     {
         #region DBSET
         public DbSet<User> Users { get; set; }
+        public DbSet<Todo> Todos { get; set; }
         #endregion
 
         public ApplicationDbContext(DbContextOptions options) : base(options)

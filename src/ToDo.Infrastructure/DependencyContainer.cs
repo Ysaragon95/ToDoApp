@@ -38,6 +38,7 @@ namespace ToDo.Infrastructure
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITodoRepository, TodoRepository>();
             #endregion
 
             return services;
